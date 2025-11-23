@@ -1,0 +1,120 @@
+body {
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI';
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+a{
+    text-decoration: none;
+}
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.sidebar {
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    width:15%;
+    height:100vh;
+    overflow: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.bar-item {
+    display: block;
+    padding: 10px;
+    color: #333;
+    background-color: #e0e0e0;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.clickable:hover {
+    background-color: #ccc;
+}
+
+.clickable.active {
+    background-color: #bbb;
+    font-weight: bold;
+}
+
+.bar-divider {
+    height: 1px;
+    background-color: #ccc;
+    margin: 10px 0;
+}
+
+.bar-logo {
+    width: 100%;
+    height: auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.logo{
+    display: block;
+    margin: 0 auto;
+    width: 80%;
+    height: auto;
+}
+
+.search {
+    display: block;
+    align-items: center;
+    margin: 10px;
+    background-color: #f4f4f9;
+    border-radius: 8px;
+    border: none;
+    padding: 8px;
+}
+
+.main-content {
+    margin-left: 15%;
+    padding: 20px;
+    width: 85%;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+.card {
+    width: 350px;
+    margin: 10px auto;
+    background-color: #232222;
+    border-radius: 10px;
+    text-align: center;
+    padding: 50px;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-weight: bold;
+}
+
+.room-title {
+    text-align: center;
+    margin-bottom: 24px;
+    font-size: 42px;
+    color: #333;
+}
+
+.footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #e0e0e0;
+    width: 85%;
+    margin-left: 15%;
+    font-size: 14px;
+    color: #555;
+}

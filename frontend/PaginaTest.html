@@ -5,270 +5,276 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Temperatura en Tiempo Real</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            text-align: center;
-            padding: 50px;
-        }
-
-        h1 {
-            color: #333;
-        }
-
-        .temperature {
-            font-size: 50px;
-            color: #ff5733;
-            font-weight: bold;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-    <div class="container">
-        <h1>Temperatura Actual</h1>
-        <p class="temperature" id="tempDisplay">Esperando datos...</p>
-    </div>
-    <script>
-        // Crear la conexión WebSocket
-        var socket = new WebSocket('ws://localhost:1880/temperature'); // Usa la URL de tu servidor WebSocket
-        // Escuchar mensajes del WebSocket
-        socket.onmessage = function (event) {
-            var data = JSON.parse(event.data);
-            var temperature = data.temperature;
-            document.getElementById('tempDisplay').innerText = temperature + ' °C';
-        };
-        socket.onopen = function () {
-            console.log("Conexión WebSocket abierta");
-        };
-        socket.onclose = function () {
-            console.log("Conexión WebSocket cerrada");
-        };
-        socket.onerror = function (error) {
-            console.log("Error en WebSocket: " + error);
-        };
-    </script>
-    <div class = "container">
-        <h1> Presión </h1>
-        <p class="temperature" id="pressDisplay">Esperando datos... </p>
-    </div>
-    <script>
-        // Crear la conexión WebSocket
-        var socket = new WebSocket('ws://localhost:1880/temperature'); // Usa la URL de tu servidor WebSocket
-        // Escuchar mensajes del WebSocket
-        socket.onmessage = function (event) {
-            var data = JSON.parse(event.data);
-            var pressure = data.pressure;
-            document.getElementById('pressDisplay').innerText = pressure;
-        };
-        socket.onopen = function () {
-            console.log("Conexión WebSocket abierta");
-        };
-        socket.onclose = function () {
-            console.log("Conexión WebSocket cerrada");
-        };
-        socket.onerror = function (error) {
-            console.log("Error en WebSocket: " + error);
-        };
-    </script>
+    <div class="row">
+    <!-- Sidebar -->
+<div class="sidebar">
 
-    <div class = "container">
-        <h1> Altura</h1>
-        <p class="temperature" id="heightDisplay">Esperando datos... </p>
+    <div class="bar-logo">
+        <img src="img.png" alt="Logo eolo" class="logo">
     </div>
-    <script>
-        // Crear la conexión WebSocket
-        var socket = new WebSocket('ws://localhost:1880/temperature'); // Usa la URL de tu servidor WebSocket
-        // Escuchar mensajes del WebSocket
-        socket.onmessage = function (event) {
-            var data = JSON.parse(event.data);
-            var height = data.height;
-            document.getElementById('heightDisplay').innerText = height;
-        };
-        socket.onopen = function () {
-            console.log("Conexión WebSocket abierta");
-        };
-        socket.onclose = function () {
-            console.log("Conexión WebSocket cerrada");
-        };
-        socket.onerror = function (error) {
-            console.log("Error en WebSocket: " + error);
-        };
-    </script>
+    <div class="bar-divider"></div>
+    <input type="text" class="search" placeholder="Search...">
+    <a href="PaginaTest.html" class="bar-item clickable">My Room</a>
+    <a href="notifs.html" class="bar-item clickable">Notifications</a>
+    <a href="rooms.html" class="bar-item clickable">Manage Rooms</a>
+    <div class="bar-divider"></div>
+    <a href="settings.html" class="bar-item clickable">Settings</a>
+    <div class="bar-divider"></div>
+    <h3 class="bar-item">Hospital Dra. Jannette Flores</h3>
 
-    <div class = "container">
-        <h1>Humedad </h1>
-        <p class="temperature" id="humDisplay">Esperando datos... </p>
-    </div>
-    <script>
-        // Crear la conexión WebSocket
-        var socket = new WebSocket('ws://localhost:1880/temperature'); // Usa la URL de tu servidor WebSocket
-        // Escuchar mensajes del WebSocket
-        socket.onmessage = function (event) {
-            var data = JSON.parse(event.data);
-            var humidity = data.humidity;
-            document.getElementById('humDisplay').innerText = humidity;
-        };
-        socket.onopen = function () {
-            console.log("Conexión WebSocket abierta");
-        };
-        socket.onclose = function () {
-            console.log("Conexión WebSocket cerrada");
-        };
-        socket.onerror = function (error) {
-            console.log("Error en WebSocket: " + error);
-        };
-    </script>
+</div>
 
-    <div class = "container">
-        <h1> Partículas 0.3 um</h1>
-        <p class="temperature" id="par03Display">Esperando datos... </p>
-    </div>
-    <script>
-        // Crear la conexión WebSocket
-        var socket = new WebSocket('ws://localhost:1880/temperature'); // Usa la URL de tu servidor WebSocket
-        // Escuchar mensajes del WebSocket
-        socket.onmessage = function (event) {
-            var data = JSON.parse(event.data);
-            var par03 = data.par03;
-            document.getElementById('par03Display').innerText = par03;
-        };
-        socket.onopen = function () {
-            console.log("Conexión WebSocket abierta");
-        };
-        socket.onclose = function () {
-            console.log("Conexión WebSocket cerrada");
-        };
-        socket.onerror = function (error) {
-            console.log("Error en WebSocket: " + error);
-        };
-    </script>
+    <!-- Page Content -->
+    <div class="main-content">
+        <h1 class="room-title">Room 123</h1>
+        <div class="card-container">
+        <div class="card">
+            <h1>Temperatura Actual</h1>
+            <p class="temperature" id="tempDisplay">Esperando datos...</p>
+        </div>
+        <script>
+            // Crear la conexión WebSocket
+            var socket = new WebSocket('ws://localhost:1880/temperature'); // Usa la URL de tu servidor WebSocket
+            // Escuchar mensajes del WebSocket
+            socket.onmessage = function (event) {
+                var data = JSON.parse(event.data);
+                var temperature = data.temperature;
+                document.getElementById('tempDisplay').innerText = temperature + ' °C';
+            };
+            socket.onopen = function () {
+                console.log("Conexión WebSocket abierta");
+            };
+            socket.onclose = function () {
+                console.log("Conexión WebSocket cerrada");
+            };
+            socket.onerror = function (error) {
+                console.log("Error en WebSocket: " + error);
+            };
+        </script>
+        <div class = "card">
+            <h1> Presión </h1>
+            <p class="temperature" id="pressDisplay">Esperando datos... </p>
+        </div>
+        <script>
+            // Crear la conexión WebSocket
+            var socket = new WebSocket('ws://localhost:1880/temperature'); // Usa la URL de tu servidor WebSocket
+            // Escuchar mensajes del WebSocket
+            socket.onmessage = function (event) {
+                var data = JSON.parse(event.data);
+                var pressure = data.pressure;
+                document.getElementById('pressDisplay').innerText = pressure;
+            };
+            socket.onopen = function () {
+                console.log("Conexión WebSocket abierta");
+            };
+            socket.onclose = function () {
+                console.log("Conexión WebSocket cerrada");
+            };
+            socket.onerror = function (error) {
+                console.log("Error en WebSocket: " + error);
+            };
+        </script>
 
-    <div class = "container">
-        <h1> Partículas 0.5 um</h1>
-        <p class="temperature" id="par05Display">Esperando datos... </p>
-    </div>
-    <script>
-        // Crear la conexión WebSocket
-        var socket = new WebSocket('ws://localhost:1880/temperature'); // Usa la URL de tu servidor WebSocket
-        // Escuchar mensajes del WebSocket
-        socket.onmessage = function (event) {
-            var data = JSON.parse(event.data);
-            var par05 = data.par05;
-            document.getElementById('par05Display').innerText = par05;
-        };
-        socket.onopen = function () {
-            console.log("Conexión WebSocket abierta");
-        };
-        socket.onclose = function () {
-            console.log("Conexión WebSocket cerrada");
-        };
-        socket.onerror = function (error) {
-            console.log("Error en WebSocket: " + error);
-        };
-    </script>
+        <div class = "card">
+            <h1> Altura</h1>
+            <p class="temperature" id="heightDisplay">Esperando datos... </p>
+        </div>
+        <script>
+            // Crear la conexión WebSocket
+            var socket = new WebSocket('ws://localhost:1880/temperature'); // Usa la URL de tu servidor WebSocket
+            // Escuchar mensajes del WebSocket
+            socket.onmessage = function (event) {
+                var data = JSON.parse(event.data);
+                var height = data.height;
+                document.getElementById('heightDisplay').innerText = height;
+            };
+            socket.onopen = function () {
+                console.log("Conexión WebSocket abierta");
+            };
+            socket.onclose = function () {
+                console.log("Conexión WebSocket cerrada");
+            };
+            socket.onerror = function (error) {
+                console.log("Error en WebSocket: " + error);
+            };
+        </script>
 
-    <div class = "container">
-        <h1> Partículas 1.0 um</h1>
-        <p class="temperature" id="par10Display">Esperando datos... </p>
-    </div>
-    <script>
-        // Crear la conexión WebSocket
-        var socket = new WebSocket('ws://localhost:1880/temperature'); // Usa la URL de tu servidor WebSocket
-        // Escuchar mensajes del WebSocket
-        socket.onmessage = function (event) {
-            var data = JSON.parse(event.data);
-            var par10 = data.par10;
-            document.getElementById('par10Display').innerText = par10;
-        };
-        socket.onopen = function () {
-            console.log("Conexión WebSocket abierta");
-        };
-        socket.onclose = function () {
-            console.log("Conexión WebSocket cerrada");
-        };
-        socket.onerror = function (error) {
-            console.log("Error en WebSocket: " + error);
-        };
-    </script>
+        <div class = "card">
+            <h1>Humedad </h1>
+            <p class="temperature" id="humDisplay">Esperando datos... </p>
+        </div>
+        <script>
+            // Crear la conexión WebSocket
+            var socket = new WebSocket('ws://localhost:1880/temperature'); // Usa la URL de tu servidor WebSocket
+            // Escuchar mensajes del WebSocket
+            socket.onmessage = function (event) {
+                var data = JSON.parse(event.data);
+                var humidity = data.humidity;
+                document.getElementById('humDisplay').innerText = humidity;
+            };
+            socket.onopen = function () {
+                console.log("Conexión WebSocket abierta");
+            };
+            socket.onclose = function () {
+                console.log("Conexión WebSocket cerrada");
+            };
+            socket.onerror = function (error) {
+                console.log("Error en WebSocket: " + error);
+            };
+        </script>
 
-    <div class = "container">
-        <h1> Partículas 2.5 um</h1>
-        <p class="temperature" id="par25Display">Esperando datos... </p>
-    </div>
-    <script>
-        // Crear la conexión WebSocket
-        var socket = new WebSocket('ws://localhost:1880/temperature'); // Usa la URL de tu servidor WebSocket
-        // Escuchar mensajes del WebSocket
-        socket.onmessage = function (event) {
-            var data = JSON.parse(event.data);
-            var par25 = data.par25;
-            document.getElementById('par25Display').innerText = par25;
-        };
-        socket.onopen = function () {
-            console.log("Conexión WebSocket abierta");
-        };
-        socket.onclose = function () {
-            console.log("Conexión WebSocket cerrada");
-        };
-        socket.onerror = function (error) {
-            console.log("Error en WebSocket: " + error);
-        };
-    </script>
+        <div class = "card">
+            <h1> Partículas 0.3 um</h1>
+            <p class="temperature" id="par03Display">Esperando datos... </p>
+        </div>
+        <script>
+            // Crear la conexión WebSocket
+            var socket = new WebSocket('ws://localhost:1880/temperature'); // Usa la URL de tu servidor WebSocket
+            // Escuchar mensajes del WebSocket
+            socket.onmessage = function (event) {
+                var data = JSON.parse(event.data);
+                var par03 = data.par03;
+                document.getElementById('par03Display').innerText = par03;
+            };
+            socket.onopen = function () {
+                console.log("Conexión WebSocket abierta");
+            };
+            socket.onclose = function () {
+                console.log("Conexión WebSocket cerrada");
+            };
+            socket.onerror = function (error) {
+                console.log("Error en WebSocket: " + error);
+            };
+        </script>
 
-    <div class = "container">
-        <h1> Partículas 5.0 um</h1>
-        <p class="temperature" id="par50Display">Esperando datos... </p>
-    </div>
-    <script>
-        // Crear la conexión WebSocket
-        var socket = new WebSocket('ws://localhost:1880/temperature'); // Usa la URL de tu servidor WebSocket
-        // Escuchar mensajes del WebSocket
-        socket.onmessage = function (event) {
-            var data = JSON.parse(event.data);
-            var par50 = data.par50;
-            document.getElementById('par50Display').innerText = par50
-        };
-        socket.onopen = function () {
-            console.log("Conexión WebSocket abierta");
-        };
-        socket.onclose = function () {
-            console.log("Conexión WebSocket cerrada");
-        };
-        socket.onerror = function (error) {
-            console.log("Error en WebSocket: " + error);
-        };
-    </script>
+        <div class = "card">
+            <h1> Partículas 0.5 um</h1>
+            <p class="temperature" id="par05Display">Esperando datos... </p>
+        </div>
+        <script>
+            // Crear la conexión WebSocket
+            var socket = new WebSocket('ws://localhost:1880/temperature'); // Usa la URL de tu servidor WebSocket
+            // Escuchar mensajes del WebSocket
+            socket.onmessage = function (event) {
+                var data = JSON.parse(event.data);
+                var par05 = data.par05;
+                document.getElementById('par05Display').innerText = par05;
+            };
+            socket.onopen = function () {
+                console.log("Conexión WebSocket abierta");
+            };
+            socket.onclose = function () {
+                console.log("Conexión WebSocket cerrada");
+            };
+            socket.onerror = function (error) {
+                console.log("Error en WebSocket: " + error);
+            };
+        </script>
 
-    <div class = "container">
-        <h1> Partículas 10.0 um</h1>
-        <p class="temperature" id="par100Display">Esperando datos... </p>
+        <div class = "card">
+            <h1> Partículas 1.0 um</h1>
+            <p class="temperature" id="par10Display">Esperando datos... </p>
+        </div>
+        <script>
+            // Crear la conexión WebSocket
+            var socket = new WebSocket('ws://localhost:1880/temperature'); // Usa la URL de tu servidor WebSocket
+            // Escuchar mensajes del WebSocket
+            socket.onmessage = function (event) {
+                var data = JSON.parse(event.data);
+                var par10 = data.par10;
+                document.getElementById('par10Display').innerText = par10;
+            };
+            socket.onopen = function () {
+                console.log("Conexión WebSocket abierta");
+            };
+            socket.onclose = function () {
+                console.log("Conexión WebSocket cerrada");
+            };
+            socket.onerror = function (error) {
+                console.log("Error en WebSocket: " + error);
+            };
+        </script>
+
+        <div class = "card">
+            <h1> Partículas 2.5 um</h1>
+            <p class="temperature" id="par25Display">Esperando datos... </p>
+        </div>
+        <script>
+            // Crear la conexión WebSocket
+            var socket = new WebSocket('ws://localhost:1880/temperature'); // Usa la URL de tu servidor WebSocket
+            // Escuchar mensajes del WebSocket
+            socket.onmessage = function (event) {
+                var data = JSON.parse(event.data);
+                var par25 = data.par25;
+                document.getElementById('par25Display').innerText = par25;
+            };
+            socket.onopen = function () {
+                console.log("Conexión WebSocket abierta");
+            };
+            socket.onclose = function () {
+                console.log("Conexión WebSocket cerrada");
+            };
+            socket.onerror = function (error) {
+                console.log("Error en WebSocket: " + error);
+            };
+        </script>
+
+        <div class = "card">
+            <h1> Partículas 5.0 um</h1>
+            <p class="temperature" id="par50Display">Esperando datos... </p>
+        </div>
+        <script>
+            // Crear la conexión WebSocket
+            var socket = new WebSocket('ws://localhost:1880/temperature'); // Usa la URL de tu servidor WebSocket
+            // Escuchar mensajes del WebSocket
+            socket.onmessage = function (event) {
+                var data = JSON.parse(event.data);
+                var par50 = data.par50;
+                document.getElementById('par50Display').innerText = par50
+            };
+            socket.onopen = function () {
+                console.log("Conexión WebSocket abierta");
+            };
+            socket.onclose = function () {
+                console.log("Conexión WebSocket cerrada");
+            };
+            socket.onerror = function (error) {
+                console.log("Error en WebSocket: " + error);
+            };
+        </script>
+
+        <div class = "card">
+            <h1> Partículas 10.0 um</h1>
+            <p class="temperature" id="par100Display">Esperando datos... </p>
+        </div>
+        <script>
+            // Crear la conexión WebSocket
+            var socket = new WebSocket('ws://localhost:1880/temperature'); // Usa la URL de tu servidor WebSocket
+            // Escuchar mensajes del WebSocket
+            socket.onmessage = function (event) {
+                var data = JSON.parse(event.data);
+                var par100 = data.par100;
+                document.getElementById('par100Display').innerText = par100;
+            };
+            socket.onopen = function () {
+                console.log("Conexión WebSocket abierta");
+            };
+            socket.onclose = function () {
+                console.log("Conexión WebSocket cerrada");
+            };
+            socket.onerror = function (error) {
+                console.log("Error en WebSocket: " + error);
+            };
+        </script>
+
+        </div>
     </div>
-    <script>
-        // Crear la conexión WebSocket
-        var socket = new WebSocket('ws://localhost:1880/temperature'); // Usa la URL de tu servidor WebSocket
-        // Escuchar mensajes del WebSocket
-        socket.onmessage = function (event) {
-            var data = JSON.parse(event.data);
-            var par100 = data.par100;
-            document.getElementById('par100Display').innerText = par100;
-        };
-        socket.onopen = function () {
-            console.log("Conexión WebSocket abierta");
-        };
-        socket.onclose = function () {
-            console.log("Conexión WebSocket cerrada");
-        };
-        socket.onerror = function (error) {
-            console.log("Error en WebSocket: " + error);
-        };
-    </script>
+    </div>
+    <div class="footer">Equipo Eolo, Reto TC1004B</div>
 </body>
 
 </html>
