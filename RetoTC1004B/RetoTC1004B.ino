@@ -47,6 +47,7 @@ void setup() {
   
   // Conectar a WiFi
   WiFi.begin(ssid, password);
+  Serial.print("\n.");
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
     Serial.print(".");
@@ -86,62 +87,34 @@ float readPressure()
   return bme.readPressure() / 100.0F;
 }
 
-float readPM10()
-{
-  if (readPMSdata(&pmsSerial)) {
-    return data.pm10_standard;
-  }
-  return 0;
+float readPar03(bool dataRead){
+  if (!dataRead) { return -1; }  
+  return data.particles_03um;
 }
 
-float readPM25()
-{
-  if (readPMSdata(&pmsSerial)) {
-    return data.pm25_standard;
-  }
-  return 0;
-}
-
-float readPar03(){
-  if (readPMSdata(&pmsSerial)) {
-    return data.particles_03um;
-  }
-  return 0;
-}
-
-float readPar05(){
-  if (readPMSdata(&pmsSerial)) {
+float readPar05(bool dataRead){
+  if (!dataRead) return -1; 
     return data.particles_05um;
-  }
-  return 0;
 }
 
-float readPar10(){
-  if (readPMSdata(&pmsSerial)) {
-    return data.particles_05um;
-  }
-  return 0;
+float readPar10(bool dataRead){
+  if (!dataRead) return -1; 
+  return data.particles_10um;
 }
 
-float readPar25(){
-  if (readPMSdata(&pmsSerial)) {
-    return data.particles_25um;
-  }
-  return 0;
+float readPar25(bool dataRead){
+  if (!dataRead) return -1; 
+  return data.particles_25um;
 }
 
-float readPar50(){
-  if (readPMSdata(&pmsSerial)) {
-    return data.particles_50um;
-  }
-  return 0;
+float readPar50(bool dataRead){
+  if (!dataRead) return -1; 
+  return data.particles_50um;
 }
 
-float readPar100(){
-  if (readPMSdata(&pmsSerial)) {
-    return data.particles_100um;
-  }
-  return 0;
+float readPar100(bool dataRead){
+  if (!dataRead) return -1; 
+  return data.particles_100um;
 }
 
 /*/
@@ -165,24 +138,20 @@ void loop() {
   float humidity = readHumidity();
   float height = readHeight();
   float pressure = readPressure();
-
-  float p03 = readPar03();
-  float p05 = readPar05();
-  float p10 = readPar10();
-  float p25 = readPar25();
-  float p50 = readPar50();
-  float p100 = readPar100();
+  
+  bool pmsRead = readPMSdata(&pmsSerial);
+  
+  float p03 = readPar03(pmsRead);
+  float p05 = readPar05(pmsRead);
+  float p10 = readPar10(pmsRead);
+  float p25 = readPar25(pmsRead);
+  float p50 = readPar50(pmsRead);
+  float p100 = readPar100(pmsRead);
   
   if (!isnan(temperature)
-      || !isnan(humidity)
-      || !isnan(height)
-      || !isnan(pressure)
-      || !isnan(p03)
-      || !isnan(p05)
-      || !isnan(p10)
-      || !isnan(p25)
-      || !isnan(p50)
-      || !isnan(p100)
+      && !isnan(humidity)
+      && !isnan(height)
+      && !isnan(pressure)
       ) {
     // Crear y publicar JSON
     StaticJsonDocument<256> jsonDoc;
