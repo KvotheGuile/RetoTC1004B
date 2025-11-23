@@ -59,10 +59,12 @@ void setup() {
 }
 
 void reconnect() {
+  Serial.print("\n.");
   while (!client.connected()) {
     if (client.connect("ESP8266Client")) {
-      Serial.println("MQTT connected");
+      Serial.println("\nMQTT connected");
     } else {
+      Serial.print(".");
       delay(5000);
     }
   }
@@ -128,6 +130,17 @@ Serial.print("Particles > 10.0 um / 0.1L air:"); Serial.println(data.particles_1
 
 //*/
 
+bool airQuality()
+{
+  if (readPMSdata(&pmsSerial))
+  {
+    ppm25 = ppm25 + data.pm25_standard; //Standard - pick one Stnd or Envir
+    eventCount++;
+    return true;
+  }
+  return false;
+}
+
 void loop() {
   delay(2000);
   if (!client.connected()) reconnect();
@@ -139,7 +152,7 @@ void loop() {
   float height = readHeight();
   float pressure = readPressure();
   
-  bool pmsRead = readPMSdata(&pmsSerial);
+  bool pmsRead = airQuality();
   
   float p03 = readPar03(pmsRead);
   float p05 = readPar05(pmsRead);
