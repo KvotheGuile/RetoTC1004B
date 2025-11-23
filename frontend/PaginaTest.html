@@ -257,7 +257,7 @@
         socket.onmessage = function (event) {
             var data = JSON.parse(event.data);
             var par100 = data.par100;
-            document.getElementById('par03Display').innerText = par100;
+            document.getElementById('par100Display').innerText = par100;
         };
         socket.onopen = function () {
             console.log("Conexión WebSocket abierta");
