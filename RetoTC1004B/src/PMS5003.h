@@ -33,17 +33,24 @@ void urlvars(){
 
 boolean readPMSdata(Stream *s) {
   if (! s->available()) {
+    Serial.println("no s available failure");
     return false;
   }
   
   // Read a byte at a time until we get to the special '0x42' start-byte
   if (s->peek() != 0x42) {
+    Serial.print("peak 0x42 failure -> ");
+    Serial.println(s->peek());
     s->read();
     return false;
   }
+  
+  Serial.print("peak 0x42 success -> ");
+  Serial.println(s->peek());
  
   // Now read all 32 bytes
   if (s->available() < 32) {
+    Serial.println("32 bit failure");
     return false;
   }
     
