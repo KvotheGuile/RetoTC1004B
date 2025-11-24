@@ -142,7 +142,7 @@ bool airQuality()
 }
 
 void loop() {
-  delay(2000);
+  delay(1500);
   if (!client.connected()) reconnect();
   client.loop();
   
