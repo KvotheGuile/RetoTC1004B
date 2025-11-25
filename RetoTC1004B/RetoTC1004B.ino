@@ -141,11 +141,9 @@ bool airQuality()
   return false;
 }
 
-void loop() {
-  delay(500);
-  if (!client.connected()) reconnect();
-  client.loop();
-  
+void sendData()
+{
+ 
   // Leer 
   float temperature = readTemperature();
   float humidity = readHumidity();
@@ -165,6 +163,7 @@ void loop() {
       && !isnan(humidity)
       && !isnan(height)
       && !isnan(pressure)
+      && pmsRead
       ) {
     // Crear y publicar JSON
     StaticJsonDocument<256> jsonDoc;
@@ -188,5 +187,12 @@ void loop() {
     Serial.println(jsonBuffer);
   } else {
     Serial.println("Failed to read from sensors");
-  }
+  } 
+}
+
+void loop() {
+  delay(500);
+  if (!client.connected()) reconnect();
+  client.loop();
+  sendData();
 }
