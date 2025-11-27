@@ -157,12 +157,15 @@ void setup() {
 }
 
 void reconnect() {
-  Serial.print("\n.");
   while (!client.connected()) {
+    Serial.print("Intentando conectar MQTT...");
+    
     if (client.connect("ESP8266Client")) {
-      Serial.println("\nMQTT connected");
+      Serial.println("Conectado!");
+      client.subscribe(mqtt_topic_sub);
     } else {
-      Serial.print(".");
+      Serial.print("Fallo, rc=");
+      Serial.println(client.state());
       delay(5000);
     }
   }
