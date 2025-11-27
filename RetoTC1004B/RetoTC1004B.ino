@@ -32,19 +32,22 @@ WiFiClient espClient;
 PubSubClient client(espClient);
 
 // ===== vairables recibidos =====
-  float temperature = 0;
-  float humidity = 0;
-  float height = 0;
-  float pressure = 0;
-  
-  bool pmsRead = false;
-  
-  float p03 = 0;
-  float p05 = 0;
-  float p10 = 0;
-  float p25 = 0;
-  float p50 = 0;
-  float p100 = 0;
+
+int TVOC = 0;
+int CO2 = 0;
+float temperature = 0;
+float humidity = 0;
+float height = 0;
+float pressure = 0;
+
+bool pmsRead = false;
+
+float p03 = 0;
+float p05 = 0;
+float p10 = 0;
+float p25 = 0;
+float p50 = 0;
+float p100 = 0;
 
 // ===== Setpoints recibidos =====
 float set_temp = 0;
