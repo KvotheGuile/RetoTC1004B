@@ -42,6 +42,77 @@ float set_particulas03 = 0;
 float set_particulas05 = 0;
 float set_particulas10 = 0;
 
+/*
+// ====================
+//     CALLBACK MQTT
+// ====================
+void callback(char* topic, byte* payload, unsigned int length) {
+  String msg = "";
+
+  for (int i = 0; i < length; i++) {
+    msg += (char)payload[i];
+  }
+
+  Serial.print("Mensaje recibido: ");
+  Serial.println(msg);
+
+  StaticJsonDocument<128> doc;
+  auto error = deserializeJson(doc, msg);
+
+  if (!error) {
+    if (doc.containsKey("set_temp")) {
+      set_temp = doc["set_temp"];
+      Serial.print("Nuevo set_temp: ");
+      Serial.println(set_temp);
+    }
+
+    if (doc.containsKey("set_hum")) {
+      set_hum = doc["set_hum"];
+      Serial.print("Nuevo set_hum: ");
+      Serial.println(set_hum);
+    }
+
+    if (doc.containsKey("set_pres")) {
+      set_pres = doc["set_pres"];
+      Serial.print("Nuevo set_pres: ");
+      Serial.println(set_pres);
+    }
+
+        if (doc.containsKey("set_alt")) {
+      set_alt = doc["set_alt"];
+      Serial.print("Nuevo set_alt: ");
+      Serial.println(set_alt);
+    }
+
+        if (doc.containsKey("set_TVOC")) {
+      set_TVOC = doc["set_TVOC"];
+      Serial.print("Nuevo set_TVOC: ");
+      Serial.println(set_TVOC);
+    }
+
+        if (doc.containsKey("set_CO2")) {
+      set_CO2 = doc["set_CO2"];
+      Serial.print("Nuevo set_CO2: ");
+      Serial.println(set_CO2);
+    }
+
+        if (doc.containsKey("set_particulas03")) {
+      set_particulas03 = doc["set_particulas03"];
+      Serial.print("Nuevo set_particulas03: ");
+      Serial.println(set_particulas03);
+    }
+
+        if (doc.containsKey("set_particulas10")) {
+      set_particulas10 = doc["set_particulas10"];
+      Serial.print("Nuevo set_particulas10: ");
+      Serial.println(set_particulas10);
+    }
+  } else {
+    Serial.println("Error al leer JSON");
+  }
+}
+//*/
+
 //SETUP
 void setup() {
   Serial.begin(115200);
