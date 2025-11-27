@@ -153,6 +153,7 @@ void setup() {
   Serial.println("\nConnected to WiFi");
   // Configurar MQTT
   client.setServer(mqtt_server, mqtt_port);
+  //client.setCallback(callback);
   reconnect();
 }
 
