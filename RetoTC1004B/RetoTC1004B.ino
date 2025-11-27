@@ -9,6 +9,7 @@
 #include <SoftwareSerial.h>
 #include "src/PMS5003.h"
 #include "src/config.h"
+#include "Adafruit_CCS811.h"
 
 SoftwareSerial pmsSerial(5, 4); //conectar TX (cable naranja) a D1 es el GPIO 5 // conectar RX (cable amarillo) a D2 es el GPIO 4
 #define SEALEVELPRESSURE_HPA (1010.80)    
@@ -24,14 +25,26 @@ const char* password = WIFI_PASSWORD;
 const char* mqtt_server = MQTT_IP;
 const int mqtt_port = 1883;
 const char* mqtt_topic = "home/sensor/temperature";
+const char* mqtt_topic_sub = "home/sensor/setpoint";
 
 WiFiClient espClient;
 PubSubClient client(espClient);
 
+
+// ===== Setpoints recibidos =====
+float set_temp = 0;
+float set_hum  = 0;
+float set_pres = 0;
+float set_alt = 0;
+float set_TVOC = 0;
+float set_CO2 = 0;
+float set_particulas03 = 0;
+float set_particulas05 = 0;
+float set_particulas10 = 0;
+
 //SETUP
 void setup() {
   Serial.begin(115200);
-  //dht.begin();
 
   // Activar BME
   // Cambiar los pines I2C aquí 👇
@@ -168,7 +181,6 @@ void sendData()
     // Crear y publicar JSON
     StaticJsonDocument<256> jsonDoc;
     jsonDoc["temperature"] = temperature;
-    jsonDoc["unit"] = "Celsius";
 
     jsonDoc["pressure"] = pressure;
     jsonDoc["height"] = height;
