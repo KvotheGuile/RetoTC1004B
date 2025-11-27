@@ -11,7 +11,7 @@
 #include "src/config.h"
 #include "Adafruit_CCS811.h"
 
-SoftwareSerial pmsSerial(5, 4); //conectar TX (cable naranja) a D1 es el GPIO 5 // conectar RX (cable amarillo) a D2 es el GPIO 4
+SoftwareSerial pmsSerial(0, 2); //conectar TX (cable naranja) a D1 es el GPIO 5 // conectar RX (cable amarillo) a D2 es el GPIO 4
 #define SEALEVELPRESSURE_HPA (1010.80)    
 
 //#define DHTPIN 2 //pin D4 del esp8266
@@ -172,10 +172,10 @@ void reconnect() {
   }
 }
 
-
+/*
 void alertas(){
-  if (temperatura > set_temp) {
-      Serial.println(" ¡ Revasó el setpoint de Temperatura! ");
+  if (temperature > set_temp) {
+                                                                                                                                Serial.println(" ¡ Revasó el setpoint de Temperatura! ");
   }
   if (humedad > set_hum) {
       Serial.println(" ¡ Revasó el setpoint de Humedad! ");
@@ -202,7 +202,7 @@ void alertas(){
       Serial.println(" ¡ Revasó el setpoint de particulas10! ");
   }
 
-}
+}//*/
 
 
 float readTemperature(){
