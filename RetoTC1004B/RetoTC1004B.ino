@@ -14,6 +14,11 @@
 SoftwareSerial pmsSerial(0, 2); //conectar TX (cable naranja) a D1 es el GPIO 5 // conectar RX (cable amarillo) a D2 es el GPIO 4
 #define SEALEVELPRESSURE_HPA (1010.80)    
 
+#define D1 5
+#define D2 4
+#define SDA_PIN D2  // GPIO4
+#define SCL_PIN D1  // GPIO5
+
 //#define DHTPIN 2 //pin D4 del esp8266
 //#define DHTTYPE DHT11
 //DHT dht(DHTPIN, DHTTYPE);
@@ -33,8 +38,8 @@ PubSubClient client(espClient);
 
 // ===== vairables recibidos =====
 
-int TVOC = 0;
-int CO2 = 0;
+int TVOC = -1;
+int CO2 = -1;
 float temperature = 0;
 float humidity = 0;
 float height = 0;
@@ -138,7 +143,7 @@ void setup() {
   // Activar BME
   // Cambiar los pines I2C aquí 👇
   Wire.begin(12, 14);  // SDA = GPIO12(D6), SCL = GPIO14(D5)
-
+  
   if (!bme.begin(0x76)) {  // <- direccion para comunicarse con el sensor.
     Serial.println("No se detecta el BME280");  // <- por si no se comunica
     while (1);
@@ -146,6 +151,19 @@ void setup() {
 
   //Activar PMS
   pmsSerial.begin(9600);
+  
+  //activar CCS
+  //*
+  Wire.begin(SDA_PIN, SCL_PIN);
+  if (!ccs.begin()) {
+    Serial.println("No se encontró CCS811. Revisa conexiones.");
+    while (1) { delay(1000); }
+  }
+
+    while (!ccs.available()) {
+    delay(100);
+  }
+  Serial.println("CCS811 listo."); //*/
   
   // Conectar a WiFi
   WiFi.begin(ssid, password);
@@ -229,32 +247,32 @@ float readPressure()
 }
 
 float readPar03(bool dataRead){
-  if (!dataRead) { return -1; }  
+  if (!dataRead) { return p03; }  
   return data.particles_03um;
 }
 
 float readPar05(bool dataRead){
-  if (!dataRead) return -1; 
+  if (!dataRead) return p05; 
     return data.particles_05um;
 }
 
 float readPar10(bool dataRead){
-  if (!dataRead) return -1; 
+  if (!dataRead) return p10; 
   return data.particles_10um;
 }
 
 float readPar25(bool dataRead){
-  if (!dataRead) return -1; 
+  if (!dataRead) return p25; 
   return data.particles_25um;
 }
 
 float readPar50(bool dataRead){
-  if (!dataRead) return -1; 
+  if (!dataRead) return p50; 
   return data.particles_50um;
 }
 
 float readPar100(bool dataRead){
-  if (!dataRead) return -1; 
+  if (!dataRead) return p100; 
   return data.particles_100um;
 }
 
@@ -280,6 +298,23 @@ bool airQuality()
   return false;
 }
 
+void ccs811()
+{
+  if (ccs.available()) {
+    if (!ccs.readData()) {
+      TVOC = ccs.getTVOC();
+      CO2 =ccs.geteCO2();
+      Serial.print("eCO2: ");
+      Serial.print(CO2);
+      Serial.print(" ppm\tTVOC: ");
+      Serial.print(TVOC);
+      Serial.println(" ppb");
+    } else {
+      Serial.println("Error leyendo datos del sensor.");
+    }
+  }
+}  
+
 void sendData()
 {
  
@@ -302,7 +337,7 @@ void sendData()
       && !isnan(humidity)
       && !isnan(height)
       && !isnan(pressure)
-      && pmsRead
+      //&& pmsRead
       ) {
     // Crear y publicar JSON
     StaticJsonDocument<256> jsonDoc;
@@ -318,6 +353,9 @@ void sendData()
     jsonDoc["par25"]  = p25;
     jsonDoc["par50"]  = p50;
     jsonDoc["par100"] = p100;
+
+    jsonDoc["co2"] = CO2;
+    jsonDoc["tvoc"] = TVOC;
      
     char jsonBuffer[256];
     serializeJson(jsonDoc, jsonBuffer);
