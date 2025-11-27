@@ -19,6 +19,7 @@ SoftwareSerial pmsSerial(0, 2); //conectar TX (cable naranja) a D1 es el GPIO 5 
 //DHT dht(DHTPIN, DHTTYPE);
 
 Adafruit_BME280 bme;   // <- definimos el objeto bme
+Adafruit_CCS811 ccs;  // <- definimos el objeto ccs
 
 const char* ssid = WIFI_SSID;
 const char* password = WIFI_PASSWORD;
