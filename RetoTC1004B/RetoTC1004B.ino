@@ -30,6 +30,20 @@ const char* mqtt_topic_sub = "home/sensor/setpoint";
 WiFiClient espClient;
 PubSubClient client(espClient);
 
+// ===== vairables recibidos =====
+  float temperature = 0;
+  float humidity = 0;
+  float height = 0;
+  float pressure = 0;
+  
+  bool pmsRead = false;
+  
+  float p03 = 0;
+  float p05 = 0;
+  float p10 = 0;
+  float p25 = 0;
+  float p50 = 0;
+  float p100 = 0;
 
 // ===== Setpoints recibidos =====
 float set_temp = 0;
@@ -229,19 +243,19 @@ void sendData()
 {
  
   // Leer 
-  float temperature = readTemperature();
-  float humidity = readHumidity();
-  float height = readHeight();
-  float pressure = readPressure();
+  temperature = readTemperature();
+  humidity = readHumidity();
+  height = readHeight();
+  pressure = readPressure();
   
-  bool pmsRead = airQuality();
+  pmsRead = airQuality();
   
-  float p03 = readPar03(pmsRead);
-  float p05 = readPar05(pmsRead);
-  float p10 = readPar10(pmsRead);
-  float p25 = readPar25(pmsRead);
-  float p50 = readPar50(pmsRead);
-  float p100 = readPar100(pmsRead);
+  p03 = readPar03(pmsRead);
+  p05 = readPar05(pmsRead);
+  p10 = readPar10(pmsRead);
+  p25 = readPar25(pmsRead);
+  p50 = readPar50(pmsRead);
+  p100 = readPar100(pmsRead);
   
   if (!isnan(temperature)
       && !isnan(humidity)
