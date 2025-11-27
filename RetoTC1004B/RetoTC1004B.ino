@@ -172,6 +172,39 @@ void reconnect() {
   }
 }
 
+
+void alertas(){
+  if (temperatura > set_temp) {
+      Serial.println(" ¡ Revasó el setpoint de Temperatura! ");
+  }
+  if (humedad > set_hum) {
+      Serial.println(" ¡ Revasó el setpoint de Humedad! ");
+  }
+  if (presion > set_pres) {
+      Serial.println(" ¡ Revasó el setpoint de Presión! ");
+  }
+  if (altitud > set_alt) {
+      Serial.println(" ¡ Revasó el setpoint de Altitud! ");
+  }
+  if (altitud > set_TVOC) {
+      Serial.println(" ¡ Revasó el setpoint de TVOC! ");
+  }
+  if (altitud > set_CO2) {
+      Serial.println(" ¡ Revasó el setpoint de CO2! ");
+  }
+  if (altitud > set_particulas03) {
+      Serial.println(" ¡ Revasó el setpoint de particulas03! ");
+  }
+  if (altitud > set_particulas05) {
+      Serial.println(" ¡ Revasó el setpoint de particulas05! ");
+  }
+  if (altitud > set_particulas10) {
+      Serial.println(" ¡ Revasó el setpoint de particulas10! ");
+  }
+
+}
+
+
 float readTemperature(){
    return bme.readTemperature();
 }
