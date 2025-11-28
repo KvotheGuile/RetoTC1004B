@@ -197,10 +197,20 @@ void reconnect() {
   }
 }
 
-/*
+//*
+void alertaWarning(char* dataName, int setpoint, int current)
+{
+  Serial.print("¡Revasó el setpoint de ");
+  Serial.print(dataName);
+  Serial.print("! \t SETPOINT: ");
+  Serial.print(setpoint);
+  Serial.print(", VALUE: ");
+  Serial.print(current);
+}
+
 void alertas(){
   if (temperature > set_temp) {
-                                                                                                                                Serial.println(" ¡ Revasó el setpoint de Temperatura! ");
+      alertaWarning(dataName, set_temp, temperature);
   }
   if (humedad > set_hum) {
       Serial.println(" ¡ Revasó el setpoint de Humedad! ");
@@ -386,4 +396,5 @@ void loop() {
   if (!client.connected()) reconnect();
   client.loop();
   sendData();
+  alertas();
 }
