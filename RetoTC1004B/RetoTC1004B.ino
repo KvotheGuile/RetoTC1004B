@@ -55,15 +55,18 @@ float p50 = 0;
 float p100 = 0;
 
 // ===== Setpoints recibidos =====
-float set_temp = 0;
-float set_hum  = 0;
-float set_pres = 0;
-float set_alt = 0;
-float set_TVOC = 0;
-float set_CO2 = 0;
-float set_particulas03 = 0;
-float set_particulas05 = 0;
-float set_particulas10 = 0;
+float set_temp = 100;
+float set_hum  = 100;
+float set_pres = 1000;
+float set_alt = 1000;
+float set_TVOC = 1000;
+float set_CO2 = 1000;
+float set_particulas03 = 1000;
+float set_particulas05 = 1000;
+float set_particulas10 = 1000;
+float set_particulas25 = 1000;
+float set_particulas50 = 1000;
+float set_particulas100 = 1000;
 
 /*
 // ====================
@@ -210,31 +213,31 @@ void alertaWarning(char* dataName, int setpoint, int current)
 
 void alertas(){
   if (temperature > set_temp) {
-      alertaWarning(dataName, set_temp, temperature);
+      alertaWarning("Temperatura", set_temp, temperature);
   }
-  if (humedad > set_hum) {
-      Serial.println(" ¡ Revasó el setpoint de Humedad! ");
+  if (humidity > set_hum) {
+      alertaWarning("Humedad", set_hum, humidity);
   }
-  if (presion > set_pres) {
-      Serial.println(" ¡ Revasó el setpoint de Presión! ");
+  if (pressure > set_pres) {
+      alertaWarning("Presion", set_pres, pressure);
   }
-  if (altitud > set_alt) {
-      Serial.println(" ¡ Revasó el setpoint de Altitud! ");
+  if (height > set_alt) {
+      alertaWarning("Altitud", set_alt, height);
   }
-  if (altitud > set_TVOC) {
-      Serial.println(" ¡ Revasó el setpoint de TVOC! ");
+  if (TVOC > set_TVOC) {
+      alertaWarning("TVOC", set_TVOC, TVOC);
   }
-  if (altitud > set_CO2) {
-      Serial.println(" ¡ Revasó el setpoint de CO2! ");
+  if (CO2 > set_CO2) {
+      alertaWarning("CO2", set_CO2, CO2);
   }
-  if (altitud > set_particulas03) {
-      Serial.println(" ¡ Revasó el setpoint de particulas03! ");
+  if (p03 > set_particulas03) {
+      alertaWarning("p03", set_particulas03, p03);
   }
-  if (altitud > set_particulas05) {
-      Serial.println(" ¡ Revasó el setpoint de particulas05! ");
+  if (p05 > set_particulas05) {
+      alertaWarning("p05", set_particulas05, p05);
   }
-  if (altitud > set_particulas10) {
-      Serial.println(" ¡ Revasó el setpoint de particulas10! ");
+  if (p10 > set_particulas10) {
+      alertaWarning("p10", set_particulas05, p10);
   }
 
 }//*/
