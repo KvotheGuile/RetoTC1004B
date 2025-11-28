@@ -243,26 +243,6 @@ void alertas(){
 }//*/
 
 
-/*
-float readTemperature(){
-   return bme.readTemperature();
-}
-
-float readHumidity()
-{
-  return bme.readHumidity();
-}
-
-float readHeight()
-{
-  return bme.readAltitude(SEALEVELPRESSURE_HPA);
-}
-
-float readPressure()
-{
-  return bme.readPressure() / 100.0F;
-}//*/
-
 float readPar03(bool dataRead){
   if (!dataRead) { return p03; }  
   return data.particles_03um;
