@@ -40,10 +40,10 @@ PubSubClient client(espClient);
 
 int TVOC = -1;
 int CO2 = -1;
-float temperature = 0;
-float humidity = 0;
-float height = 0;
-float pressure = 0;
+float temperature = -1;
+float humidity = -1;
+float height = -1;
+float pressure = -1;
 
 bool pmsRead = false;
 
@@ -143,6 +143,8 @@ void setup() {
   // Activar BME
   // Cambiar los pines I2C aquí 👇
   Wire.begin(12, 14);  // SDA = GPIO12(D6), SCL = GPIO14(D5)
+  //#define SDA_PIN D2  // GPIO4 (D2)
+  //#define SCL_PIN D1  // GPIO5 (D1)
   
   if (!bme.begin(0x76)) {  // <- direccion para comunicarse con el sensor.
     Serial.println("No se detecta el BME280");  // <- por si no se comunica
@@ -151,10 +153,11 @@ void setup() {
 
   //Activar PMS
   pmsSerial.begin(9600);
+
   
   //activar CCS
   //*
-  Wire.begin(SDA_PIN, SCL_PIN);
+  //Wire.begin(SDA_PIN, SCL_PIN);
   if (!ccs.begin()) {
     Serial.println("No se encontró CCS811. Revisa conexiones.");
     while (1) { delay(1000); }
@@ -286,6 +289,10 @@ Serial.print("Particles > 5.0um / 0.1L air:"); Serial.println(data.particles_50u
 Serial.print("Particles > 10.0 um / 0.1L air:"); Serial.println(data.particles_100um);
 
 //*/
+void readBME()
+{
+  
+}
 
 bool airQuality()
 {
@@ -319,6 +326,8 @@ void sendData()
 {
  
   // Leer 
+  ccs811();
+  
   temperature = readTemperature();
   humidity = readHumidity();
   height = readHeight();
@@ -333,10 +342,11 @@ void sendData()
   p50 = readPar50(pmsRead);
   p100 = readPar100(pmsRead);
   
-  if (!isnan(temperature)
-      && !isnan(humidity)
-      && !isnan(height)
-      && !isnan(pressure)
+  if (true 
+      //&& !isnan(temperature)
+      //&& !isnan(humidity)
+      //&& !isnan(height)
+      //&& !isnan(pressure)
       //&& pmsRead
       ) {
     // Crear y publicar JSON
@@ -347,15 +357,15 @@ void sendData()
     jsonDoc["height"] = height;
     jsonDoc["humidity"] = humidity;
 
+    jsonDoc["co2"] = CO2;
+    jsonDoc["tvoc"] = TVOC;
+    
     jsonDoc["par03"]  = p03;
     jsonDoc["par05"]  = p05;
     jsonDoc["par10"]  = p10;
     jsonDoc["par25"]  = p25;
     jsonDoc["par50"]  = p50;
     jsonDoc["par100"] = p100;
-
-    jsonDoc["co2"] = CO2;
-    jsonDoc["tvoc"] = TVOC;
      
     char jsonBuffer[256];
     serializeJson(jsonDoc, jsonBuffer);
