@@ -314,13 +314,7 @@ void sendData()
  
   // Leer 
   ccs811();
-  readBME();
-  
-  //temperature = readTemperature();
-  //humidity = readHumidity();
-  //height = readHeight();
-  //pressure = readPressure();
-  
+  readBME();  
   pmsRead = airQuality();
   
   p03 = readPar03(pmsRead);
