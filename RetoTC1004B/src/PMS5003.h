@@ -14,7 +14,7 @@ int avgPpm25 = 0;
 //600 seconds = 10mins - I want to calc an average every 10 mins
 int secsToPost = 600; //number of seconds to wait - also the divisor for avg
 String urlVars; //will hold the GET values sent to my website
-
+bool debugPrints = false;
 
 void urlvars(){
 
@@ -33,24 +33,33 @@ void urlvars(){
 
 boolean readPMSdata(Stream *s) {
   if (! s->available()) {
+    if (debugPrints) { 
     Serial.println("no s available failure");
+    }
     return false;
   }
   
   // Read a byte at a time until we get to the special '0x42' start-byte
   if (s->peek() != 0x42) {
+    if (debugPrints) {
     Serial.print("peak 0x42 failure -> ");
     Serial.println(s->peek());
+    }
+    
     s->read();
     return false;
   }
   
+  if (debugPrints) {
   Serial.print("peak 0x42 success -> ");
   Serial.println(s->peek());
+  }
  
   // Now read all 32 bytes
   if (s->available() < 32) {
+    if (debugPrints) {
     Serial.println("32 bit failure");
+    }
     return false;
   }
     
@@ -81,7 +90,9 @@ boolean readPMSdata(Stream *s) {
   memcpy((void *)&data, (void *)buffer_u16, 30);
  
   if (sum != data.checksum) {
+    if (debugPrints) {
     Serial.println("Checksum failure");
+    }
     return false;
   }
   // success!
