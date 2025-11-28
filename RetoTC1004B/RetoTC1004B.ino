@@ -273,16 +273,6 @@ float readPar100(bool dataRead){
   return data.particles_100um;
 }
 
-/*/
-
-Serial.print("Particles > 0.3um / 0.1L air:"); Serial.println(data.particles_03um);
-Serial.print("Particles > 0.5um / 0.1L air:"); Serial.println(data.particles_05um);
-Serial.print("Particles > 1.0um / 0.1L air:"); Serial.println(data.particles_10um);
-Serial.print("Particles > 2.5um / 0.1L air:"); Serial.println(data.particles_25um);
-Serial.print("Particles > 5.0um / 0.1L air:"); Serial.println(data.particles_50um);
-Serial.print("Particles > 10.0 um / 0.1L air:"); Serial.println(data.particles_100um);
-
-//*/
 void readBME()
 {
   temperature = bme.readTemperature(); 
