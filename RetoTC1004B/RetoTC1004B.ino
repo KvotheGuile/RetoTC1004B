@@ -230,6 +230,7 @@ void alertas(){
 }//*/
 
 
+/*
 float readTemperature(){
    return bme.readTemperature();
 }
@@ -247,7 +248,7 @@ float readHeight()
 float readPressure()
 {
   return bme.readPressure() / 100.0F;
-}
+}//*/
 
 float readPar03(bool dataRead){
   if (!dataRead) { return p03; }  
@@ -291,7 +292,10 @@ Serial.print("Particles > 10.0 um / 0.1L air:"); Serial.println(data.particles_1
 //*/
 void readBME()
 {
-  
+  temperature = bme.readTemperature(); 
+  humidity = readHumidity();
+  height = bme.readAltitude(SEALEVELPRESSURE_HPA);
+  pressure = bme.readPressure() / 100.0F;
 }
 
 bool airQuality()
@@ -327,11 +331,12 @@ void sendData()
  
   // Leer 
   ccs811();
+  readBME();
   
-  temperature = readTemperature();
-  humidity = readHumidity();
-  height = readHeight();
-  pressure = readPressure();
+  //temperature = readTemperature();
+  //humidity = readHumidity();
+  //height = readHeight();
+  //pressure = readPressure();
   
   pmsRead = airQuality();
   
