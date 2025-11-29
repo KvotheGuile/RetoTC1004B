@@ -56,7 +56,7 @@ float p100 = 0;
 
 // ===== Setpoints recibidos =====
 float set_temp = 100;
-float set_hum  = 100;
+float set_hum  = 65;
 float set_pres = 1000;
 float set_alt = 1000;
 float set_TVOC = 1000;
@@ -68,7 +68,7 @@ float set_particulas25 = 1000;
 float set_particulas50 = 1000;
 float set_particulas100 = 1000;
 
-/*
+//*
 // ====================
 //     CALLBACK MQTT
 // ====================
@@ -170,7 +170,7 @@ void setup() {
     delay(100);
   }
   Serial.println("CCS811 listo."); //*/
-  
+  Serial.println("Connecting to wifi");
   // Conectar a WiFi
   WiFi.begin(ssid, password);
   Serial.print("\n.");
@@ -181,7 +181,7 @@ void setup() {
   Serial.println("\nConnected to WiFi");
   // Configurar MQTT
   client.setServer(mqtt_server, mqtt_port);
-  //client.setCallback(callback);
+  client.setCallback(callback);
   reconnect();
 }
 
@@ -209,6 +209,7 @@ void alertaWarning(char* dataName, int setpoint, int current)
   Serial.print(setpoint);
   Serial.print(", VALUE: ");
   Serial.print(current);
+  Serial.print("\n");
 }
 
 void alertas(){
@@ -276,7 +277,7 @@ float readPar100(bool dataRead){
 void readBME()
 {
   temperature = bme.readTemperature(); 
-  humidity = readHumidity();
+  humidity = bme.readHumidity();
   height = bme.readAltitude(SEALEVELPRESSURE_HPA);
   pressure = bme.readPressure() / 100.0F;
 }
