@@ -57,17 +57,17 @@ float p100 = 0;
 
 // ===== Setpoints recibidos =====
 float set_temp = 100;
-float set_hum  = 65;
-float set_pres = 1000;
+float set_hum  = 100;
+float set_pres = 10000;
 float set_alt = 1000;
-float set_TVOC = 1000;
-float set_CO2 = 1000;
-float set_particulas03 = 10000;
-float set_particulas05 = 10000;
-float set_particulas10 = 10000;
-float set_particulas25 = 10000;
-float set_particulas50 = 10000;
-float set_particulas100= 10000;
+float set_TVOC = 10000;
+float set_CO2 = 10000;
+float set_particulas03 = 100000;
+float set_particulas05 = 100000;
+float set_particulas10 = 100000;
+float set_particulas25 = 100000;
+float set_particulas50 = 100000;
+float set_particulas100= 100000;
 
 //*
 // ====================
