@@ -129,11 +129,36 @@ void callback(char* topic, byte* payload, unsigned int length) {
       Serial.println(set_particulas03);
     }
 
+    if (doc.containsKey("set_particulas05")) {
+      set_particulas05 = doc["set_particulas05"];
+      Serial.print("Nuevo set_particulas05: ");
+      Serial.println(set_particulas05);
+    }
+
         if (doc.containsKey("set_particulas10")) {
       set_particulas10 = doc["set_particulas10"];
       Serial.print("Nuevo set_particulas10: ");
       Serial.println(set_particulas10);
     }
+
+         if (doc.containsKey("set_particulas25")) {
+      set_particulas25 = doc["set_particulas25"];
+      Serial.print("Nuevo set_particulas25: ");
+      Serial.println(set_particulas25);
+    }
+
+    if (doc.containsKey("set_particulas50")) {
+      set_particulas50 = doc["set_particulas50"];
+      Serial.print("Nuevo set_particulas50: ");
+      Serial.println(set_particulas50);
+    }
+
+    if (doc.containsKey("set_particulas100")) {
+      set_particulas100 = doc["set_particulas100"];
+      Serial.print("Nuevo set_particulas100: ");
+      Serial.println(set_particulas100);
+    }
+    
   } else {
     Serial.println("Error al leer JSON");
   }
@@ -250,7 +275,23 @@ void alertas(){
       mainAlarm = true;
   }
   if (p10 > set_particulas10) {
-      alertaWarning("p10", set_particulas05, p10);
+      alertaWarning("p10", set_particulas10, p10);
+      mainAlarm = true;
+  }
+  
+  if (p25 > set_particulas25) {
+      alertaWarning("p25", set_particulas25, p25);
+      mainAlarm = true;
+  }
+  
+  if (p50 > set_particulas50) {
+      alertaWarning("p50", set_particulas50, p50);
+      mainAlarm = true;
+  }
+  
+  
+  if (p100 > set_particulas100) {
+      alertaWarning("p100", set_particulas100, p100);
       mainAlarm = true;
   }
 
