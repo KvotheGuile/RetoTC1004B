@@ -18,6 +18,7 @@ SoftwareSerial pmsSerial(0, 2); //conectar TX (cable naranja) a D1 es el GPIO 5 
 #define D2 4
 #define SDA_PIN D2  // GPIO4
 #define SCL_PIN D1  // GPIO5
+#define LED_OUT 5
 
 //#define DHTPIN 2 //pin D4 del esp8266
 //#define DHTTYPE DHT11
@@ -61,12 +62,12 @@ float set_pres = 1000;
 float set_alt = 1000;
 float set_TVOC = 1000;
 float set_CO2 = 1000;
-float set_particulas03 = 1000;
-float set_particulas05 = 1000;
-float set_particulas10 = 1000;
-float set_particulas25 = 1000;
-float set_particulas50 = 1000;
-float set_particulas100 = 1000;
+float set_particulas03 = 10000;
+float set_particulas05 = 10000;
+float set_particulas10 = 10000;
+float set_particulas25 = 10000;
+float set_particulas50 = 10000;
+float set_particulas100= 10000;
 
 //*
 // ====================
@@ -183,6 +184,8 @@ void setup() {
   client.setServer(mqtt_server, mqtt_port);
   client.setCallback(callback);
   reconnect();
+  
+  pinMode(LED_OUT, OUTPUT);
 }
 
 void reconnect() {
@@ -213,34 +216,52 @@ void alertaWarning(char* dataName, int setpoint, int current)
 }
 
 void alertas(){
+  bool mainAlarm = false;
   if (temperature > set_temp) {
       alertaWarning("Temperatura", set_temp, temperature);
+      mainAlarm = true;
   }
   if (humidity > set_hum) {
       alertaWarning("Humedad", set_hum, humidity);
+      mainAlarm = true;
   }
   if (pressure > set_pres) {
       alertaWarning("Presion", set_pres, pressure);
+      mainAlarm = true;
   }
   if (height > set_alt) {
       alertaWarning("Altitud", set_alt, height);
+      mainAlarm = true;
   }
   if (TVOC > set_TVOC) {
       alertaWarning("TVOC", set_TVOC, TVOC);
+      mainAlarm = true;
   }
   if (CO2 > set_CO2) {
       alertaWarning("CO2", set_CO2, CO2);
+      mainAlarm = true;
   }
   if (p03 > set_particulas03) {
       alertaWarning("p03", set_particulas03, p03);
+      mainAlarm = true;
   }
   if (p05 > set_particulas05) {
       alertaWarning("p05", set_particulas05, p05);
+      mainAlarm = true;
   }
   if (p10 > set_particulas10) {
       alertaWarning("p10", set_particulas05, p10);
+      mainAlarm = true;
   }
 
+  if (mainAlarm)
+  {
+    digitalWrite(LED_OUT, HIGH);
+  }else
+  {
+    digitalWrite(LED_OUT, LOW);  
+  }
+  
 }//*/
 
 
