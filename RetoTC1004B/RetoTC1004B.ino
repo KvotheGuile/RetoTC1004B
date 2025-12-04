@@ -55,13 +55,16 @@ float p25 = 0;
 float p50 = 0;
 float p100 = 0;
 
+// alarma
+bool mainAlarm = false;
+
 // ===== Setpoints recibidos =====
 float set_temp = 100;
 float set_hum  = 100;
 float set_pres = 10000;
 float set_alt = 1000;
-float set_TVOC = 10000;
-float set_CO2 = 10000;
+float set_TVOC = 1000000;
+float set_CO2 = 1000000;
 float set_particulas03 = 100000;
 float set_particulas05 = 100000;
 float set_particulas10 = 100000;
@@ -197,6 +200,7 @@ void setup() {
   }
   Serial.println("CCS811 listo."); //*/
   Serial.println("Connecting to wifi");
+  
   // Conectar a WiFi
   WiFi.begin(ssid, password);
   Serial.print("\n.");
@@ -241,7 +245,7 @@ void alertaWarning(char* dataName, int setpoint, int current)
 }
 
 void alertas(){
-  bool mainAlarm = false;
+  mainAlarm = false;
   if (temperature > set_temp) {
       alertaWarning("Temperatura", set_temp, temperature);
       mainAlarm = true;
@@ -411,6 +415,12 @@ void sendData()
     jsonDoc["par25"]  = p25;
     jsonDoc["par50"]  = p50;
     jsonDoc["par100"] = p100;
+    
+    jsonDoc["alarm"] = 0;
+
+    if (mainAlarm){
+      jsonDoc["alarm"] = 1;
+    }
      
     char jsonBuffer[256];
     serializeJson(jsonDoc, jsonBuffer);
