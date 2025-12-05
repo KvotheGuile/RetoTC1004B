@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="dashboard-style.css" />
+    <title>Alertas | Eolo</title>
+</head>
+<body>
+    <div class="page">
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="grey-card">
+
+                <!-- Logo -->
+                <div class="logo">
+                    <img src="../resources/logo.png" />
+                </div>
+                <div class="divider"></div>
+
+                <!-- Sidebar elements -->
+                <div class="sidebar-elements">
+
+                    <a class="sidebar-element" href="dashboard.html">
+                        <svg class="humbleicons hi-dashboard" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-width="2" d="M4 5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5Zm10 0a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1V5ZM4 16a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3Zm10-3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-6Z"/>
+                        </svg>
+                    </a>
+
+                    <a class="sidebar-element active" href="alertas.html">
+                        <svg class="humbleicons hi-exclamation-triangle" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v4m0 3v.01M5.313 20h13.374c1.505 0 2.471-1.6 1.77-2.931L13.77 4.363c-.75-1.425-2.79-1.425-3.54 0L3.543 17.068C2.842 18.4 3.808 20 5.313 20Z"/>
+                        </svg>
+                    </a>
+
+                    <a class="sidebar-element" href="salas.html">
+                        <svg class="humbleicons hi-home" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 10v9a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-9M6 10l6-6 6 6M6 10l-2 2m14-2 2 2m-10 1h4v4h-4v-4z"/>
+                        </svg>
+                    </a>
+
+                    <div class="space"></div>
+
+                    <a class="sidebar-element" href="ajustes.html">
+                        <svg class="humbleicons hi-adjustments" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v10m0 6v-.5M17.5 4v5m0 11v-5.56M6.5 4v2m0 14v-8.44M6.5 6a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Zm5.5 8a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Zm5.5-5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Z"/>
+                        </svg>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Main content -->
+        <div class="main-content">
+ 
+            <div class="topbar">
+                <div class="grey-card">
+                    <div class="padded-row">
+                        <div style="color: #626262;">Sala <span class="placeholder">.....................</span></div>
+                        <div style="color: #626262;"> ¡Hola <span class="placeholder">.............................</span>!</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dashboard -->
+            <div class="dashboard" id="dashboard">
+                <div class="grey-card">
+                    <div class="padded-column">
+
+                        <!-- Dashboard header -->
+                        <div class="dashboard-header">
+                            <h1>Alertas</h1>
+                            <button>Exportar Datos</button>
+                        </div>
+
+                        <!-- Card container -->
+                        <div>
+                            <p>Aquí podrás ver tus alertas</p>
+                        </div>
+
+                    </div> <!-- padded-column -->
+                </div> <!-- grey-card -->
+            </div> <!-- dashboard -->
+        </div> <!-- main-content -->
+
+    </div> <!-- page -->
+    <script>
+        window.addEventListener("load", () => {
+            const saved = localStorage.getItem("fontSize");
+            if (saved) {
+                document.documentElement.style.fontSize = saved;
+            }
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,401 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+/* ==================================================
+   Base
+================================================== */
+
+body {
+    background-color: #f5f5f5;
+    color: #292929;
+    font-family: Poppins, sans-serif;
+}
+
+.page {
+    display: flex;
+    height: calc(100vh - 25px);
+    padding: 5px;
+    gap: 10px;
+}
+
+/* ==================================================
+   Sidebar
+================================================== */
+
+.sidebar {
+    width: 50px;
+    height: 100%;
+    justify-content: center;
+    position: fixed;
+}
+
+.sidebar-elements {
+    padding-top: 17px;
+    gap: 10px;
+    flex-shrink: 0; 
+    justify-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-element {
+    background-color: #dbdbdb;
+    border-radius: 100%;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sidebar-element:hover {
+    background-color: #c3c3c3;
+    cursor: pointer;
+}
+
+.sidebar-element svg {
+    width: 26px;
+    height: 26px;
+    color: #626262;
+    flex-shrink: 0;
+    flex-grow: 0;
+}
+
+.active svg{
+    color: #ffffff
+}
+
+.sidebar-element.active  {
+    background-color: #4f67f8;
+}
+
+.logo {
+    padding-top: 20px;
+    padding-bottom: 17px;
+    justify-self: center;
+}
+
+.logo img {
+    height: 24px;
+    width: auto;
+}
+
+.space {
+    height: 57vh;
+}
+
+.divider {
+    height: 2px;
+    width: 70%;
+    background-color: #ccc;
+    border-radius: 2px;
+    justify-self: center;
+}
+
+/* ==================================================
+   Main Content
+================================================== */
+
+.main-content {
+    margin-left: 60px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 10px;
+}
+
+.topbar {
+    height: 5%;
+    font-size: 16px;
+}
+
+.dashboard {
+    height: 95%;
+}
+
+/* ==================================================
+   Cards & Misc Components
+================================================== */
+
+.grey-card {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+.padded-row {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.padded-column {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* ==================================================
+   Topbar
+================================================== */
+.search {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    background-color: #ffffff;
+    color:#646464;
+}
+
+/* ==================================================
+   Dashboard Layout
+================================================== */
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: stretch;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* 5-per-row and 2-per-row families */
+.row4 > * {
+    flex: 0 0 calc(25% - 20px);
+}
+
+.row2 > * {
+    flex: 0 0 calc(50% - 20px);
+}
+
+.row3 > * {
+    flex: 0 0 calc(33% - 20px);
+}
+
+/* Header */
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+.dashboard-header button {
+    background: none;
+    color: #292929;
+    border: solid 2px #292929;
+}
+
+.dashboard-header button:hover {
+    background: none;
+    color: #292929;
+    border: solid 2px #4f67f8;
+}
+
+button {
+    padding: 8px 16px;
+    background: #4f67f8;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    width: 130px;
+    font-weight: 500;
+}
+
+button:hover{
+    background: #817af7;
+    transition: all 0.2s ease;
+}
+
+/* Card container */
+.card-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* Individual card */
+.card {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+    width: 140px;
+    gap: 10px;
+    background: #fff;
+    border-radius: 10px;
+    flex: 1 1 0;
+}
+
+/* Typography */
+h1 {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 600;
+    margin: 0;
+}
+
+h2 {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 600;
+    margin: 0;
+}
+
+p {
+    margin: 0;
+    font-weight: 300;
+}
+
+.placeholder {
+    font-weight: bold;
+    background-color: #cdcdcd;
+    color: #cdcdcd;
+    border-radius: 10px;
+}
+
+/* ==================================================
+   Inputs & Interaction
+================================================== */
+
+.setpoint {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    gap: 10px;
+}
+
+.setpoint input {
+    width: 70%;
+    height: 28px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    max-width: 200px;
+}
+
+.setpoint input:focus {
+    outline: none;
+    border: 2px solid #4f67f8;
+}
+
+
+/* ==================================================
+   Progress Bars
+================================================== */
+
+.bar {
+    width: 100%;
+    height: 28px;
+    background-color: #cdcdcd;
+    border-radius: 10px;
+    margin: 0;
+    display: block;
+}
+
+.progress {
+    width: 30%;
+    height: 100%;
+    background-color: #4f67f8;
+    border-radius: 10px;
+    transition: all 1s ease;
+}
+
+/* ==================================================
+   Graphs & Axes
+================================================== */
+
+.bar-graph {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    width: 100%;
+    height: fit-content;
+    margin: 20px 0;
+}
+
+.bar-graph .bar {
+    background-color: #fff;
+}
+
+.data-block {
+    width: 100%;
+    gap: 5px;
+    align-items: flex-start;
+}
+
+.label {
+    font-size: 0.8rem;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.horizontal-axis {
+    position: relative;
+    width: 100%;
+    height: 25px;
+}
+
+.horizontal-axis .tick {
+    position: absolute;
+    transform: translateX(-80%);
+    font-size: 0.7rem;
+    color: #292929;
+    white-space: nowrap;
+}
+
+.horizontal-axis::before {
+    content: "";
+    position: absolute;
+    top: 80%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #ccc;
+}
+
+.semi-gauge {
+    width: 250px;
+    height: 125px; /* half of width */
+    position: relative;
+    margin: 0 auto;
+}
+
+.semi-gauge-cover {
+    width: 145px;
+    height: 72.5px;
+    background: #fff;
+    border-radius: 83px 83px 0 0;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.semi-gauge-inner {
+    width: 100%;
+    height: 100%;
+    border-radius: 140px 140px 0 0; /* semicircle */
+    overflow: hidden;
+    position: relative;
+    background: #ddd;
+
+}
+
+.semi-gauge-fill {
+    width: 100%;
+    height: 100%;
+    background: #4f67f8;
+    position: absolute;
+    bottom: 0;
+    transform-origin: bottom center;
+    transition: transform 1s ease;
+    transform: rotate(180deg);
+}
