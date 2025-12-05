@@ -126,7 +126,7 @@ body {
 }
 
 .padded-column {
-    padding: 15px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
 }
@@ -223,7 +223,6 @@ button:hover{
     flex-direction: column;
     text-align: center;
     padding: 20px;
-    width: 140px;
     gap: 10px;
     background: #fff;
     border-radius: 10px;
@@ -263,6 +262,7 @@ p {
 
 .setpoint {
     display: flex;
+    flex-direction: row;
     justify-content: center;
     margin: 0;
     gap: 10px;
@@ -279,7 +279,7 @@ p {
 
 .setpoint input:focus {
     outline: none;
-    border: 2px solid #4f67f8;
+    border: 1px solid #4f67f8;
 }
 
 
