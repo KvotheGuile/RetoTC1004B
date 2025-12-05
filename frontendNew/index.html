@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Eolo | Caciot</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,15 +11,15 @@
     <header>
         <div class="left">
             <div class="logo">
-                <img src="resources/logo.png" alt="Logo Eolo">
+                <img src="resources/logo.png" alt="Logo">
             </div>
 
             <div class="divider"></div>
 
             <nav class="nav-links">
-                <a href="#features">Features</a>
-                <a href="#pricing">Pricing</a>
-                <a href="#contact">Contact</a>
+                <a href="#features">Características</a>
+                <a href="#pricing">Precios</a>
+                <a href="#contact">Contacto</a>
             </nav>
         </div>
 
@@ -34,36 +34,91 @@
         <div class="content-hero">
             <h1>El estándar más alto en <span class="highlight">calidad de aire</span></h1>
             <p>Lleva tu hospital al siguiente nivel de control ambiental.</p>
-            <a href="#" class="btn">Get Started</a>
+            <a href="#pricing" class="btn">Get Started</a>
         </div>
-        <img src="resources/stuff.png" alt="Sensores y Microcontrolador">
+        <div class="blurred-background"></div>
     </div>
 
-    <div id="features">
-        <div class="full-height">
-            <h1>Features</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                <p>BME280</p>
-                <p>PMS5003</p>
-                <p>Cjmcu-811 Ccs811</p>
+    <div id="features" class="section">
+    <div>
+        <h1>Características</h1>
+        <p>Tus salas merecen datos <strong>precisos y en tiempo real</strong>. 
+            <br><strong>Caciot</strong> lleva el <strong>IoT</strong> a tu hospital, con sensores de alta calidad y visualización en tiempo real, para ofrecer una visión completa de las condiciones ambientales.</p>
+       
+    <div class="column">
+        <div class="row">
+            <div class="feature">
+                <h2>BME280</h2>
+                <p>Sensor ambiental digital que mide <strong>temperatura, humedad y presión atmosférica</strong> con alta precisión. Ideal para monitorear las condiciones de tu espacio y prevenir la proliferación de bacterias .</p>
+            </div>
+
+            <div class="feature">
+                <h2>PMS5003</h2>
+                <p>Sensor láser de calidad del aire que mide partículas en suspensión como <strong>PM1.0, PM2.5 y PM10</strong>. Perfecto para controlar la contaminación y mejorar la salud ambiental.</p>
+            </div>
         </div>
+       
+        <div class="row">
+            <div class="feature">
+                <h2>Cjmcu-811 / CCS811</h2>
+                <p>Sensor digital que mide <strong>compuestos orgánicos volátiles (TVOC)</strong> y estima la concentración equivalente de <strong>dióxido de carbono (eCO₂)</strong>. Crucial para conocer el estado de la ventilación y reducir la transmisión de enfermedades transmitidas por el aire.</p>
+            </div>
+
+            <div class="feature">
+                <h2>Conectividad</h2>
+                <p>Todos los sensores se conectan a un <strong>microcontrolador ESP8266 (NodeMCU)</strong> para que los datos puedan visualizarse en tu <strong>dashboard</strong> y descargarse en <strong>CSV</strong>.</p>
+            </div>
+        </div>
+    </div>
+    </div>
+    <button id="backToTop" title="Volver arriba">↑</button>
+</div>
+
+<div class="sep"></div>
+
+<div id="pricing" class="section">
+    <div>
+        <h1>Precios</h1>
+        <p>Elige la opción que mejor se adapte a tus necesidades y empieza a monitorear la calidad del aire de tus espacios.</p>
     </div>
 
-    <div id="pricing">
-        <div class="full-height">
-            <h1>Pricing</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
+    <div class="pricing-cards">
+        <div class="pricing-card" style="background-image: url(resources/1.jpg);">
+            <h2>Caciot</h2>
+            <p class="price">3,800 MXN</p>
+            <p>Obtén tu sensor IoT para comenzar a recopilar datos precisos en tiempo real.</p>
         </div>
+
+        <div class="pricing-card" style="background-image: url(resources/2.jpg);">
+            <h2>Instalación</h2>
+            <p class="price">Cotiza con nosotros</p>
+            <p>Instalación profesional del sistema, conectando tus clave de control ambiental y limpieza, garantizando un monitoreo preciso.</p>
+        </div>
+
+        <div class="pricing-card" style="background-image: url(resources/3.jpg);">
+            <h2>Anualidad</h2>
+            <p class="price">1200 MXN / año</p>
+            <p>Mantenimiento para tus instalaciones, así como acceso completo al dashboard y descarga de registros en formato CSV.</p>
+        </div>
+    </div>
+</div>
+
+<div class="sep"></div>
+
+    <div id="contact" class="section">
+    <div>
+        <h1>Contacto</h1>
+        <p>¿Tienes preguntas o quieres una cotización? Nuestro equipo está listo para ayudarte.</p>
+
+        <div class="row" style="justify-content: space-between;">
+            <p><strong>Email:</strong> <a style="color:#4f67f8; text-decoration:none;">contact@eolo.com</a></p>
+            <p><strong>Teléfono:</strong> <a style="color:#4f67f8; text-decoration:none;">111 222 333</a></p>
+            <p><strong>Repositorio de Github:</strong> <a href="https://github.com/KvotheGuile/RetoTC1004B" style="color:#4f67f8; text-decoration:none;">RetoTC1004B</a></p>
+        </div>
+    </div>
     </div>
 
-    <div id="contact">
-        <div class="full-height">
-            <h1>Contact us</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <p>contact@gmail.com</p>
-                <p>111 222 333</p>
-        </div>
-    </div>
+<div style="height: 20px;"></div>
     
     
     <script src="script.js"></script>  
